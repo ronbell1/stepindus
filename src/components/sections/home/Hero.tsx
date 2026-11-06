@@ -6,8 +6,12 @@ import { ArrowUpRight, ArrowDown } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { images } from "@/lib/images";
+import { useIntro } from "@/components/intro/IntroContext";
 
 export function Hero() {
+  const { isIntroActive } = useIntro();
+  const delayOffset = isIntroActive ? 1.85 : 0;
+
   return (
     <section className="relative flex min-h-[92vh] items-end overflow-hidden bg-navy-950 text-white">
       <div className="absolute inset-0">
@@ -33,7 +37,7 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, delay: delayOffset, ease: [0.16, 1, 0.3, 1] }}
           className="mb-6 flex items-center gap-2 text-[0.8rem] font-semibold tracking-[0.1em] text-orange-400 uppercase"
         >
           <span className="h-[3px] w-6 rounded-full bg-orange-500" />
@@ -43,7 +47,7 @@ export function Hero() {
         <motion.h1
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, delay: delayOffset + 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-4xl font-display text-[2.6rem] leading-[1.06] font-medium balance drop-shadow-sm sm:text-6xl lg:text-7xl"
         >
           Launch your India GCC in 90 days.
@@ -52,7 +56,7 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, delay: delayOffset + 0.22, ease: [0.16, 1, 0.3, 1] }}
           className="mt-7 max-w-xl text-lg leading-relaxed text-white/90 drop-shadow-sm pretty sm:text-xl"
         >
           StepIndus takes single-point ownership of your India Global
@@ -63,7 +67,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, delay: delayOffset + 0.34, ease: [0.16, 1, 0.3, 1] }}
           className="mt-11 flex flex-wrap items-center gap-4"
         >
           <Link
@@ -85,7 +89,7 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.9 }}
+        transition={{ duration: 1, delay: delayOffset + 0.7 }}
         className="absolute bottom-7 right-5 z-10 hidden items-center gap-2 text-[0.78rem] text-white/50 sm:right-8 lg:right-10 md:flex"
       >
         <ArrowDown size={14} />

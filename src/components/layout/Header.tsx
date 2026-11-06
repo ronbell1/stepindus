@@ -8,9 +8,11 @@ import { Menu, X, ChevronDown, ArrowUpRight, Phone } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { NAV_SERVICE_GROUPS, PRIMARY_NAV, siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import { useIntro } from "@/components/intro/IntroContext";
 
 export function Header() {
   const pathname = usePathname();
+  const { isIntroActive } = useIntro();
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -30,7 +32,16 @@ export function Header() {
   }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-sand-200 bg-sand-50/90 backdrop-blur-md">
+    <motion.header
+      initial={isIntroActive ? { y: -16, opacity: 0 } : false}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{
+        duration: 0.6,
+        delay: isIntroActive ? 1.85 : 0,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="sticky top-0 z-50 border-b border-sand-200 bg-sand-50/90 backdrop-blur-md"
+    >
       <div className="mx-auto flex h-18 max-w-8xl items-center justify-between gap-6 px-5 sm:px-8 lg:px-10" style={{ height: "4.5rem" }}>
         <Logo priority />
 
@@ -150,7 +161,7 @@ export function Header() {
       <AnimatePresence>
         {mobileOpen && <MobileNav onNavigate={() => setMobileOpen(false)} />}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
 
