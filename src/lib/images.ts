@@ -22,10 +22,10 @@ export function imgUrl(id: string, w: number, q = 80): string {
 
 export const images = {
   heroSkyscrapers: {
-    id: "1486406146926-c627a92ad1ab",
-    alt: "Looking up at glass office towers in a global business district",
-    width: 3456,
-    height: 5184,
+    id: "1519501025264-65ba15a82390",
+    alt: "Modern illuminated corporate towers and business district at twilight",
+    width: 4000,
+    height: 2667,
   },
   constructionSkyline: {
     id: "1565008447742-97f6f38c985c",
